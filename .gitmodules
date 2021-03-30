@@ -1,0 +1,4 @@
+[submodule "lang/c/src/jansson"]
+	path = lang/c/src/jansson
+	url = git@github.com:arenadata/jansson.git
+	ignore = dirty

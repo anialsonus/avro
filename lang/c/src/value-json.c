@@ -254,7 +254,7 @@ avro_value_to_json_t(const avro_value_t *value)
 		{
 			int  rc;
 			size_t  element_count, i;
-			json_t  *result = json_object();
+			json_t  *result = json_object_postgres_protected();
 			if (result == NULL) {
 				avro_set_error("Cannot allocate JSON map");
 				return NULL;
@@ -296,7 +296,7 @@ avro_value_to_json_t(const avro_value_t *value)
 		{
 			int  rc;
 			size_t  field_count, i;
-			json_t  *result = json_object();
+			json_t  *result = json_object_postgres_protected();
 			if (result == NULL) {
 				avro_set_error("Cannot allocate new JSON record");
 				return NULL;
@@ -354,7 +354,7 @@ avro_value_to_json_t(const avro_value_t *value)
 			    avro_schema_union_branch(union_schema, disc);
 			branch_name = avro_schema_type_name(branch_schema);
 
-			json_t  *result = json_object();
+			json_t  *result = json_object_postgres_protected();
 			if (result == NULL) {
 				avro_set_error("Cannot allocate JSON union");
 				return NULL;

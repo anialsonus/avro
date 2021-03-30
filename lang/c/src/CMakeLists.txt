@@ -76,22 +76,37 @@ set(AVRO_SRC
     wrapped-buffer.c
 )
 
+set(JANSSON_SRC
+    jansson/src/dump.c
+    jansson/src/error.c
+    jansson/src/hashtable.c
+    jansson/src/load.c
+    jansson/src/memory.c
+    jansson/src/pack_unpack.c
+    jansson/src/strbuffer.c
+    jansson/src/strconv.c
+    jansson/src/utf.c
+    jansson/src/value.c
+)
 
 source_group(Avro FILES ${AVRO_SRC})
+source_group(Jansson FILE ${JANSSON_SRC})
 
 # The version.sh script gives us a VERSION that uses colon as a
 # separator; we need periods.
 
 string(REPLACE ":" "." LIBAVRO_DOT_VERSION ${LIBAVRO_VERSION})
 
-add_library(avro-static STATIC ${AVRO_SRC})
-target_link_libraries(avro-static ${JANSSON_LIBRARIES} ${CODEC_LIBRARIES} ${THREADS_LIBRARIES})
+add_library(avro-static STATIC ${AVRO_SRC} ${JANSSON_SRC})
+target_include_directories(avro-static PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/jansson/src)
+target_link_libraries(avro-static ${CODEC_LIBRARIES} ${THREADS_LIBRARIES})
 set_target_properties(avro-static PROPERTIES OUTPUT_NAME avro)
 
 if (NOT WIN32)
 # TODO: Create Windows DLLs. See https://www.cmake.org/Wiki/BuildingWinDLL
-add_library(avro-shared SHARED ${AVRO_SRC})
-target_link_libraries(avro-shared ${JANSSON_LIBRARIES} ${CODEC_LIBRARIES} ${THREADS_LIBRARIES})
+add_library(avro-shared SHARED ${AVRO_SRC} ${JANSSON_SRC})
+target_link_libraries(avro-shared ${CODEC_LIBRARIES} ${THREADS_LIBRARIES})
+target_include_directories(avro-shared PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/jansson/src)
 set_target_properties(avro-shared PROPERTIES
         OUTPUT_NAME avro
         VERSION ${LIBAVRO_DOT_VERSION}

@@ -105,6 +105,8 @@ endif(APPLE)
 
 if(CMAKE_COMPILER_IS_GNUCC)
     add_definitions(-W -Wall)
+    add_definitions(-fPIC)
+    add_link_options(-Wl,--exclude-libs=libjansson)
 endif(CMAKE_COMPILER_IS_GNUCC)
 
 if (WIN32)
@@ -179,14 +181,8 @@ set(CODEC_LIBRARIES ${ZLIB_LIBRARIES} ${LZMA_LIBRARIES} ${SNAPPY_LIBRARIES})
 set(CODEC_PKG "@ZLIB_PKG@ @LZMA_PKG@ @SNAPPY_PKG@")
 
 # Jansson JSON library
-pkg_check_modules(JANSSON jansson>=2.3)
-if (JANSSON_FOUND)
-    set(JANSSON_PKG libjansson)
-    include_directories(${JANSSON_INCLUDE_DIRS})
-    link_directories(${JANSSON_LIBRARY_DIRS})
-else (JANSSON_FOUND)
-    message(FATAL_ERROR "libjansson >=2.3 not found")
-endif (JANSSON_FOUND)
+add_subdirectory(jansson)
+include_directories(${CMAKE_SOURCE_DIR}/jansson/include)
 
 
 add_subdirectory(src)

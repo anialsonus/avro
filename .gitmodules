@@ -1,0 +1,4 @@
+[submodule "lang/c/jansson"]
+	path = lang/c/jansson
+	url = ../jansson.git
+	ignore = dirty

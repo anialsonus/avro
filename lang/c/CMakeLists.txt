@@ -182,7 +182,8 @@ set(CODEC_PKG "@ZLIB_PKG@ @LZMA_PKG@ @SNAPPY_PKG@")
 
 # Jansson JSON library
 add_subdirectory(jansson)
-include_directories(${CMAKE_SOURCE_DIR}/jansson/include)
+#include_directories(${CMAKE_SOURCE_DIR}/jansson/include)
+include_directories(${CMAKE_SOURCE_DIR}/jansson/src)
 
 
 add_subdirectory(src)

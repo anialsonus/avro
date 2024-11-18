@@ -52,8 +52,8 @@
     These packages are used for building, testing and code analysis. Most likely they are safe to upgrade
   -->
   <PropertyGroup Label="Build, Test, Code Analysis Package Versions">
-    <MicrosoftBuildFrameworkVersion>16.8.0</MicrosoftBuildFrameworkVersion>
-    <MicrosoftBuildUtilitiesCoreVersion>16.8.0</MicrosoftBuildUtilitiesCoreVersion>
+    <MicrosoftBuildFrameworkVersion>17.12.6</MicrosoftBuildFrameworkVersion>
+    <MicrosoftBuildUtilitiesCoreVersion>17.12.6</MicrosoftBuildUtilitiesCoreVersion>
     <MicrosoftCodeAnalysisNetAnalyzersVersion>5.0.3</MicrosoftCodeAnalysisNetAnalyzersVersion>
     <MicrosoftNETTestSdkVersion>16.8.3</MicrosoftNETTestSdkVersion>
     <NUnitVersion>3.13.1</NUnitVersion>
